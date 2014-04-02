@@ -1,4 +1,11 @@
-ee-snippet-youtube-iframe-api
-=============================
+ExpressionEngine Snippet | YouTube iframe API
+=============================================
 
-Fire multiple YouTube video's on one page via ExpressionEngine channel entries.
+Assuming the following ExpressionEngine settings:
+
+* ``channel_short_name`` = blog
+* category ID = 1
+
+Assuming the following ExpressionEngine addons are installed:
+* Matrix
+* WYVERN Video
