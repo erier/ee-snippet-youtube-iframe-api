@@ -1,50 +1,23 @@
 ExpressionEngine Snippet | YouTube iframe API
 =============================================
 
-Assuming the following ExpressionEngine settings:
-
-* ``channel_short_name`` = blog
-* category ID = 1
+Requirements
+------------
 
 Assuming the following ExpressionEngine addons are installed:
 * Matrix
 * WYVERN Video
 
-```javascript
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+Assuming the following ExpressionEngine settings:
+* ``channel_short_name`` = blog
+* category ID = 1
+* ``{blog-video}`` = Matrix tag
+* ``{blog-video-embed}`` = WYVERN video tag
 
-// create player variable(s) for blog posts categorized under 'video'
-{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}
-{blog-video}
-	var player{entry_id};
-{/blog-video}
-{/exp:channel:entries}
+What it Does
+------------
+Using the [YouTube iframe API](https://developers.google.com/youtube/iframe_api_reference) we can create multiple 'on click' YouTube video players on a single page.
 
-function onYouTubeIframeAPIReady() {
-	// create YT player video elements for each blog post categorized under 'video'
-{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}
-	{blog-video}
-	$('#video-{url_title}').click(function() {
-    player{entry_id} = new YT.Player('video-{url_title}', {
-      height: '280',
-      width: '500',
-      videoId: '{blog-video-unlisted}{blog-video-embed:id}',
-      events: {
-        'onReady': onPlayerReady
-      }
-    });
+Notice that there are two instances of ``{exp:channel:entries}`` below. This is because the ``onYouTubeIframeAPIReady()`` function can only be called once. Because of that, all the entries assigned to category 1 will be listed inside of the ``onYouTubeIframeAPIReady()`` function.
 
-    $(".media-wrap").fitVids();
-  });
-  {/blog-video}
-{/exp:channel:entries}
-}
-
-// video player ready
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-```
+Each video player must have a unique player variable and element ID associated with them, therefore we assign the EE ``{entry_id}`` variable to appropriate pieces of the script.
