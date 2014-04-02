@@ -17,9 +17,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // create player variable(s) for blog posts categorized under 'video'
-{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}{blog-video}
+{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}
+{blog-video}
 	var player{entry_id};
-{/blog-video}{/exp:channel:entries}
+{/blog-video}
+{/exp:channel:entries}
 
 function onYouTubeIframeAPIReady() {
 	// create YT player video elements for each blog post categorized under 'video'
