@@ -1,29 +1,16 @@
-ExpressionEngine Snippet | YouTube iframe API
-=============================================
-
-Assuming the following ExpressionEngine settings:
-
-* ``channel_short_name`` = blog
-* category ID = 1
-
-Assuming the following ExpressionEngine addons are installed:
-* Matrix
-* WYVERN Video
-
-```javascript
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 // create player variable(s) for blog posts categorized under 'video'
-{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}{blog-video}
+{exp:channel:entries channel="blog" category="1" disable="member_data|pagination"}{blog-video}
 	var player{entry_id};
 {/blog-video}{/exp:channel:entries}
 
 function onYouTubeIframeAPIReady() {
 	// create YT player video elements for each blog post categorized under 'video'
-{exp:channel:entries channel="blog" category="42" disable="member_data|pagination"}
+{exp:channel:entries channel="blog" category="1" disable="member_data|pagination"}
 	{blog-video}
 	$('#video-{url_title}').click(function() {
     player{entry_id} = new YT.Player('video-{url_title}', {
@@ -45,4 +32,3 @@ function onYouTubeIframeAPIReady() {
 function onPlayerReady(event) {
   event.target.playVideo();
 }
-```
