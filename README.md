@@ -5,8 +5,8 @@ Requirements
 ------------
 
 Assuming the following ExpressionEngine addons are installed:
-* Matrix
-* WYVERN Video
+* [Matrix](http://dvt.ee/matrix)
+* [WYVERN Video](http://dvt.ee/adp7sFd)
 
 Assuming the following ExpressionEngine settings:
 * ``channel_short_name`` = blog
