@@ -22,8 +22,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             'onReady': onPlayerReady
           }
         });
-
-        $(".media-wrap").fitVids();
       });
       {/blog-video}
     {/exp:channel:entries}
